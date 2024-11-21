@@ -78,13 +78,13 @@ jobs:
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
         env:
-            NETLIFY_AUTH_TOKEN: ${{ secrets.secrets.NETLIFY_AUTH_TOKEN }}  # Access token from your repo secrets
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         with:
-        args: |
-          deploy 
-          --dir=build  # Or your build output directory
-          --prod
-          --site=${{ secrets.NETLIFY_SITE_ID }}
+          args: |
+            deploy
+            --dir=dist
+            --prod
+            --site=${{ secrets.NETLIFY_SITE_ID }}
 
       
         
