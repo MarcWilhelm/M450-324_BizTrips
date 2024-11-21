@@ -73,12 +73,19 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+
       - name: Deploy to Netlify
-        id: netlify_deploy
-        run: |
-          netlify deploy \
-            --dir dist \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
-            --auth ${{ secrets.secrets.NETLIFY_AUTH_TOKEN }}
+        uses: netlify/actions/cli@master
+        env:
+            NETLIFY_AUTH_TOKEN: ${{ secrets.secrets.NETLIFY_AUTH_TOKEN }}  # Access token from your repo secrets
+        with:
+        args: |
+          deploy 
+          --dir=build  # Or your build output directory
+          --prod
+          --site=${{ secrets.NETLIFY_SITE_ID }}
+
+      
         
               
