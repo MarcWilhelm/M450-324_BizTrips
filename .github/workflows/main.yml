@@ -62,15 +62,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
+          cache: "npm"
 
       - name: Install Netlify CLI
-        run: npm install -g netlify-cli
+        run: npm install netlify-cli@17.10.1 -g
 
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        with:
-          args: deploy --dir=build --prod
-          site_id: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+          - name: Deploy to Netlify
+            id: netlify_deploy
+            run: |
+              prod_flag=""
+               if [ "$BRANCH_NAME" = "main" ]; then prod_flag="--prod"; fi
+              netlify deploy \
+                --dir dist \
+                --site ${{ secrets.NETLIFY_SITE_ID }} \
+                --auth ${{ secrets.secrets.NETLIFY_AUTH_TOKEN }}
+              $prod_flag
+              
