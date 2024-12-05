@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Projektdokumentation von den beiden Modulen 450 und 324
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
