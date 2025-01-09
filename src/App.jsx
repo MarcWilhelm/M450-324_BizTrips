@@ -5,25 +5,18 @@ import Footer from "./Footer";
 import Header from "./Header";
 import TripList from "./components/TripList";
 import Wishlist from "./components/Wishlist";
+import {addToWishlist} from "./utlis/addToWishlist";
 
 
 export default function App() {
-    const [wishlist, setWishlist] = useState([]); // [1,2,3,4,5
+    const [wishlist, setWishlist] = useState([]); // [1,2,3,4,5];
 
 
     // wishlist functions
-    function addToWishlist(trip) {
-        console.log("add to wishlist->", trip);
-        const {id, title, description, startTrip, endTrip} = trip;
-        setWishlist((trip) => {
-            const tripInWishlist = trip.find((t) => t.id === id);
-            if (tripInWishlist) {
-                return trip;
-            } else {
-                return [...trip, {id, title, description, startTrip, endTrip}];
-            }
-        });
-    }
+    function addTripToWishlist(trip) {
+        setWishlist(addToWishlist(trip, wishlist));
+    };
+
 
     function removeFromWishlist(item) {
         console.log(item);
@@ -52,7 +45,7 @@ export default function App() {
                     <Wishlist wishlist={wishlist} removeFromWishlist={() => removeFromWishlist()}
                               clearWishlist={() => clearWishlist()}/>
                     {/*   <WishList />*/}
-                    <TripList addToWishlist={addToWishlist}/>
+                    <TripList addTripToWishlist={addTripToWishlist}/>
 
                 </main>
             </div>

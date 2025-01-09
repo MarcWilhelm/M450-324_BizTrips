@@ -4,13 +4,13 @@ import {testTrips} from "./api";
 
 
 // functional component ProductList, deconstruct props!
-function TripList({ addToWishlist }) {
+function TripList({ addTripToWishlist }) {
   const [month, setMonth] = useState("");
   const [trips] = useState(testTrips);
   const months = ["Idle", "Jan", "Feb", "March", "April", "Mai", "June"];
 
   const tripsMapped = trips.map((trip, index) => (
-    <Trip addToWishlist={addToWishlist} trip={trip} key={trip.id} />
+    <Trip addToWishlist={addTripToWishlist} trip={trip} key={trip.id} />
   ));
 
   const empty = (
