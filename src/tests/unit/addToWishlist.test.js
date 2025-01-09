@@ -7,8 +7,8 @@ describe("App Component Wishlist Functionality", () => {
             id: 1,
             title: "Trip to Paris",
             description: "Enjoy the city of lights",
-            startTrip: "2024-05-01",
-            endTrip: "2024-05-10",
+            startTrip: [2021, 2, 13, 0, 0],
+            endTrip: [2021, 2, 15, 16, 56],
         };
         // Verify that the trip was added to the wishlist
         expect(   addToWishlist(trip,[])).toStrictEqual([trip])
