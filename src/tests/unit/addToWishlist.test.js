@@ -1,21 +1,16 @@
-const {addToWishlist} = require("../../App")
-const { render,screen} = require("@testing-library/react");
-const TripList = require("../../components/TripList");
+import {addToWishlist} from "../../utlis/addToWishlist";
 
-test("add Item to Wishlist", () => {
-    render(<TripList/>)
-    const trip = {
-        id: 1,
-        title: "Zürich",
-        description: "Biz Trip",
-        startTrip: [2021, 2, 13, 0, 0],
-        endTrip: [2021, 2, 15, 16, 56],};
-    addToWishlist(trip);
-    const tripTitle = screen.getByText(/Zürich/);
-    expect(tripTitle).toHaveTextContent(/Zürich/);
-
-
-
-
-
+describe("App Component Wishlist Functionality", () => {
+    it("should add a trip to the wishlist when 'addToWishlist' is called", () => {
+             // Define a specific trip object
+        const trip = {
+            id: 1,
+            title: "Trip to Paris",
+            description: "Enjoy the city of lights",
+            startTrip: "2024-05-01",
+            endTrip: "2024-05-10",
+        };
+        // Verify that the trip was added to the wishlist
+        expect(   addToWishlist(trip,[])).toStrictEqual([trip])
+    });
 });
