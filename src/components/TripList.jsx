@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {testTrips} from "./api";
+import {filterTripsByMonth} from "../utlis/filterTrips";
 
 
 // functional component ProductList, deconstruct props!
@@ -21,7 +22,7 @@ function TripList({ addTripToWishlist }) {
 
   // if month selected then filter the trips from month === month
   const filteredTrips = month
-      ? trips.filter((t) => t.startTrip[1] === parseInt(month))
+      ? filterTripsByMonth(month, trips)
       : tripsMapped;
 
   return (

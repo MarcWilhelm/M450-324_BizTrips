@@ -6,6 +6,7 @@ import Header from "./Header";
 import TripList from "./components/TripList";
 import Wishlist from "./components/Wishlist";
 import {addToWishlist} from "./utlis/addToWishlist";
+import {deleteItemWishlist} from "./utlis/deleteItemWishlist";
 
 
 export default function App() {
@@ -19,9 +20,7 @@ export default function App() {
 
 
     function removeFromWishlist(item) {
-        console.log(item);
-        setWishlist((trip) => trip.filter((t) => t.id !== trip.id));
-
+        setWishlist(deleteItemWishlist(item.id,wishlist));
     }
 
 
