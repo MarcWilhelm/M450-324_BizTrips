@@ -7,12 +7,23 @@ import {filterTripsByMonth} from "../utlis/filterTrips";
 // functional component ProductList, deconstruct props!
 function TripList({addTripToWishlist}) {
     const [month, setMonth] = useState("");
-    const [trips] = useState(testTrips);
+    const [trips, setTrips] = useState(testTrips);
     const months = ["Idle", "Jan", "Feb", "March", "April", "Mai", "June"];
-
     const tripsMapped = trips.map((trip, index) => (
         <Trip addToWishlist={addTripToWishlist} trip={trip} key={trip.id}/>
     ));
+    const filteredTrips = month
+        ? filterTripsByMonth(month, trips)
+        : tripsMapped;
+
+    useEffect(() => {
+
+        setTrips(   filterTripsByMonth(month, testTrips));
+    }, [month]);
+
+
+
+
 
     const empty = (
         <section>
@@ -21,9 +32,6 @@ function TripList({addTripToWishlist}) {
     );
 
     // if month selected then filter the trips from month === month
-    const filteredTrips = month
-        ? filterTripsByMonth(month, trips)
-        : tripsMapped;
 
     return (
         <div className="container">
@@ -51,7 +59,7 @@ function TripList({addTripToWishlist}) {
                     {month && (
                         <h2>
                             Found {filteredTrips.length}
-                            {filteredTrips.length >= 1 ? " trips" : " trip"} for the month of
+                            {filteredTrips.length > 1 ? " trips" : " trip"} for the month of
                             {" " + months[month]}
                         </h2>
                     )}
