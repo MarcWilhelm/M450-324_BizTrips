@@ -77,14 +77,11 @@ export default function Wishlist({ wishlist, removeFromWishlist, clearWishlist }
   );
 }
 
-function WishlistItem(props) {
-  // deconstruct props
-  const { removeFromWishlist, item } = props;
+function WishlistItem({ removeFromWishlist, item }) {
   // props
   let { id, title, description, startTrip, endTrip } = item;
 
-  console.log("WishlistItem", props);
-
+  console.log(item.id)
   // console.log("WishlistItem", item);
   return (
     <tr key={id}>
@@ -117,10 +114,8 @@ function WishlistItem(props) {
         <i className="fa-regular fa-heart"></i>
         <button
           className="btn btn-outline-danger"
-          // onClick={ () => removeFromWishlist(props.item) } // App deleteItem
+          onClick={()=>  removeFromWishlist(item.id) } // App deleteItem
 
-
-            onClick={(item) => removeFromWishlist(item)}
         >
           Delete Item
         </button>

@@ -16,11 +16,11 @@ export default function App() {
     // wishlist functions
     function addTripToWishlist(trip) {
         setWishlist(addToWishlist(trip, wishlist));
-    };
+    }
 
 
-    function removeFromWishlist(item) {
-        setWishlist(deleteItemWishlist(item.id,wishlist));
+    function removeFromWishlist(id) {
+        setWishlist(deleteItemWishlist(id,wishlist));
     }
 
 
@@ -41,7 +41,7 @@ export default function App() {
                 <main>
                     <h1>Welcome to biztrips Happy new Year-react - 2024</h1>
 
-                    <Wishlist wishlist={wishlist} removeFromWishlist={() => removeFromWishlist()}
+                    <Wishlist wishlist={wishlist} removeFromWishlist={ removeFromWishlist}
                               clearWishlist={() => clearWishlist()}/>
                     {/*   <WishList />*/}
                     <TripList addTripToWishlist={addTripToWishlist}/>
